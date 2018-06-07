@@ -7,14 +7,21 @@ export class MainPage extends React.Component {
 	
 	handleBack = () => {
 	
-		console.log(this.props.history)
+		const location = {
+			pathname:'/main/one',
+			state:{
+				customdata:{a:1, b:2}
+			}
+		}
+		
+		this.props.history.push(location)
 	}
 	
   render() {
     return (
       <div className="App">
         <div>这是主页</div>
-				<div style={{width:'10rem', height:'10rem', textAlign:'center', background:'red', lineHeight:'10rem'}} onClick={this.handleBack}>返回</div>
+				<div style={{width:'10rem', height:'10rem', textAlign:'center', background:'red', lineHeight:'10rem'}} onClick={this.handleBack}>第一页</div>
       </div>
     );
   }

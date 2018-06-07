@@ -15,9 +15,9 @@ class App extends React.Component {
 				<Router>
 					<div className="App">
 						<Switch>
-							<Redirect exact strict from='/xx' to='/main'/>
-							<Route path='/main' component={MainPage}/>
-							<Route path='/main/one' component={MainOne}/>
+							<Redirect exact strict from='/' to='/main'/>
+							<Route exact path='/main' component={MainPage}/>
+							<Route exact path='/main/one' component={MainOne}/>
 						</Switch>
 					</div>
 				</Router>

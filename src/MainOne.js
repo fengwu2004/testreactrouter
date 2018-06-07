@@ -11,6 +11,10 @@ export class MainOne extends React.Component {
 	}
 	
   render() {
+	
+		console.log(this.props.match)
+	  console.log(this.props.location)
+	  
     return (
       <div className="App">
         <div>这是第一页</div>
