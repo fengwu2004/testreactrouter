@@ -3,24 +3,49 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, withRouter, Link, NavLink, Redirect, Switch } from 'react-router-dom'
 import {MainPage} from "./MainPage";
-import {MainOne} from "./MainOne";
+import {PageOne} from "./MainOne";
+import ScrollToTop from './ScrollToTop'
+import {PageTwo} from "./MainTwo";
+
+class AsideBar extends React.Component {
+	
+	gotoPageTwo = ()=>{
+	
+		this.props.history.push('/two')
+	}
+	
+	gotoPageOne = ()=>{
+		
+		this.props.history.push('/one')
+	}
+	
+	render() {
+		return (
+			<div>
+				<div onClick={this.gotoPageOne}>分页1</div><div onClick={this.gotoPageTwo}>分页2</div>
+			</div>
+		)
+	}
+}
+
+const AsideBarWithRouter = withRouter(AsideBar)
 
 class App extends React.Component {
 	render() {
 		return (
 			<div>
+				<aside>
+					<Link to={{pathname:'/one', search:'?name=ky', hash:'#the-one', state:{fromDashboard:true}}}>one</Link>
+					<br/>
+					<Link to='/two'>two</Link>
+				</aside>
 				<div>
-					你好
+					<Switch>
+						<Route exact path='/' render={(props)=>(<MainPage {...props} x={100} y={100}/>)}/>
+						<Route path='/two' component={PageTwo}/>
+						<Route path='/one' component={PageOne}/>
+					</Switch>
 				</div>
-				<Router>
-					<div className="App">
-						<Switch>
-							<Redirect exact strict from='/' to='/main'/>
-							<Route exact path='/main' component={MainPage}/>
-							<Route exact path='/main/one' component={MainOne}/>
-						</Switch>
-					</div>
-				</Router>
 			</div>
 		);
 	}
